@@ -65,6 +65,7 @@ body {
     margin-top: 15px;
     cursor: pointer;
     display: none;
+    background-color: #07a2ff;
 }
 
 .navBarDesktop {
@@ -123,7 +124,7 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
-    background-image: url('../images/banner204.png');
+    background-image: url('../images/iemafoto.jpeg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -476,10 +477,13 @@ body {
     .navBarDesktop {
         display: flex;
     }
-    .navBar ul {
+    .navBar .menu {
         display: flex;
         list-style: none;
         gap: 15px;
+    }
+    .submenu {
+        display: none;
     }
     .navBar ul li {
         padding: 10px;

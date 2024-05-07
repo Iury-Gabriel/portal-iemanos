@@ -129,6 +129,27 @@ main h1 {
     text-align: center;
 }
 
+.salas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.salas a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.salas a:hover {
+    background-color: #e0e0e0;
+}
+
 .accordion {
     width: 100%;
     max-width: 1024px;
@@ -224,5 +245,18 @@ main h1 {
     }
     .navBar ul li a:hover {
         opacity: 0.5;
+    }
+    .salas {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .salas a {
+        display: inline-block;
+        padding: 20px 30px;
+        background-color: #f0f0f0;
+        color: black;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s;
     }
 }
