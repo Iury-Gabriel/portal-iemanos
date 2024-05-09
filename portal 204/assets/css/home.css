@@ -632,10 +632,9 @@ body {
         height: 250px;
     }
     .containerAtvdEProvas {
-        height: 450px;
+        height: 600px;
         display: flex;
         align-items: center;
-        margin-bottom: 100px;
     }
     .painelAtvEProvas {
         flex-direction: row;
