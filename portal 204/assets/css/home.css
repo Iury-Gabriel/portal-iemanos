@@ -374,7 +374,7 @@ body {
     font-weight: lighter;
 }
 
-.containerHorario {
+.containerEventos {
     background-color: #003459;
     height: 825px;
     display: flex;
@@ -382,22 +382,20 @@ body {
     align-items: center;
 }
 
-.containerHorario h1 {
+.containerEventos h1 {
     text-align: center;
     color: white;
     font-weight: lighter;
     margin-top: 30px;
 }
 
-.containerHorario p {
+.containerEventos p {
     text-align: center;
     color: #eee;
 }
 
-.containerHorario small {
-    text-align: center;
-    color: #eee;
-    font-style: italic;
+.containerEventos img {
+    
 }
 
 .horarioDesktop {
@@ -676,7 +674,7 @@ body {
     .moreBtn {
         display: none;
     }
-    .containerHorario {
+    .containerEventos {
         height: 670px;
     }
     .wrapper i:first-child{
