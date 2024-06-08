@@ -126,7 +126,7 @@ body {
     height: 100vh;
     background-image: url('../images/iemafoto2.jpg');
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: -170px;
     background-size: cover;
     display: flex;
     align-items: center;
@@ -563,6 +563,9 @@ body {
   }
 
 @media (min-width: 1024px) {
+    .banner {
+        background-position: center;
+    }
     .bannerHeader {
         display: flex;
         justify-content: center;
