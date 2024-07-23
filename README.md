@@ -1,38 +1,33 @@
-# Portal 204
-
-# Site da Sala de Aula
-
-Este é o repositório do projeto do site da sala de aula, onde os alunos podem encontrar informações sobre atividades, datas de entrega, horários de provas e outros recursos úteis.
-
 ## Instalação
+Você pode clonar este repositório OU baixar o .zip
 
-Para executar o projeto localmente, siga estas etapas:
+Ao descompactar, é necessário rodar o **composer** pra instalar as dependências e gerar o *autoload*.
 
-1. Clone este repositório em sua máquina local:
+Vá até a pasta do projeto, pelo *prompt/terminal* e execute:
+> composer install
 
-2. Navegue até o diretório do projeto:
+Depois é só aguardar.
 
-3. Abra o arquivo index.html em seu navegador web.
+## Configuração
+Todos os arquivos de **configuração** e aplicação estão dentro da pasta *src*.
 
-## Funcionalidades
+As configurações de Banco de Dados e URL estão no arquivo *src/Config.php*
 
-- Página inicial com informações gerais sobre a sala de aula.
-- Listagem de atividades pendentes e concluídas, com datas de entrega.
-- Horários de provas para todas as disciplinas.
-- Calendário de eventos, incluindo palestras e outros eventos importantes.
-- Quizzes das provas para praticar.
-- Links úteis para recursos educacionais.
-- Galeria de fotos da sala de aula.
-- Painel de avisos para comunicados importantes.
+É importante configurar corretamente a constante *BASE_DIR*:
+> const BASE_DIR = '/**PastaDoProjeto**/public';
 
-## Contribuição
+## Uso
+Você deve acessar a pasta *public* do projeto.
 
-Você pode contribuir para este projeto de várias maneiras:
+O ideal é criar um ***alias*** específico no servidor que direcione diretamente para a pasta *public*.
 
-1. Abra problemas (issues) para relatar bugs ou sugerir novos recursos.
-2. Fork o repositório e envie solicitações pull com suas melhorias.
-3. Melhore a documentação ou o código fonte existente.
+## Modelo de MODEL
+```php
+<?php
+namespace src\models;
+use \core\Model;
 
-## Licença
+class Usuario extends Model {
 
-Este projeto está licenciado sob a [MIT License](https://opensource.org/licenses/MIT).
+}
+```

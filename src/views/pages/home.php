@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <title>Portal Iemanos</title>
+</head>
+<body>
+    
+    <!-- Header e Banner-->
+    <header class="bannerHeader">
+        <div class="headerContainer">
+            <div class="header">
+                <div>
+                    <img class="logo" src="./assets/images/logoiema.jpeg" alt="">
+                </div>
+                <div class="navBar">
+                    <img src="./assets/images/menu.png" alt="" class="menuIcon">
+                    <img src="./assets/images/fechar.png" alt="" class="fecharIcon">
+                    <div class="navBarDesktop">
+                        <ul class="menu">
+                            <li><a href="<?= $base ?>/">Home</a></li>
+                            <li><a href="<?= $base ?>/atividades">Atividades</a></li>
+                            <li><a href="<?= $base ?>/provas">Provas</a></li>
+                            <li><a href="<?= $base ?>/quiz">Quiz</a></li>
+                            <li><a href="<?= $base ?>/dicas">Dicas</a></li>
+                        </ul>
+                    </div>
+                    <div class="navBarMobile">
+                        <ul>
+                            <li><a href="<?= $base ?>/">Home</a></li>
+                            <li><a href="<?= $base ?>/atividades">Atividades</a></li>
+                            <li><a href="<?= $base ?>/provas">Provas</a></li>
+                            <li><a href="<?= $base ?>/quiz">Quiz</a></li>
+                            <li><a href="<?= $base ?>/dicas">Dicas</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="banner">
+            <div class="bannerText">
+                <h1>Bem-vindo(a) ao Portal Iemanos</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Fim Header e Banner-->
+
+    <!-- Informações da Sala -->
+
+    <section class="containerInfoSala">
+        <div class="infoSala">
+            <h1>INFORMAÇÕES GERAIS</h1>
+            <p>Explore nosso site para encontrar informações sobre atividades, o calendário de eventos, horário de aula e dicas de estudos, tudo voltado para a escola. Estamos aqui para ajudá-lo(a) a dominar habilidades essenciais na área da tecnologia. Vamos começar essa jornada juntos!</p>
+        </div>
+    </section>
+
+    <!-- Fim Informações da Sala -->
+
+    <!-- Painel de Avisos -->
+
+    <section class="containerAvisos">
+        <h1 class="avisoTitle">PAINEL DE AVISOS</h1>
+        <div class="painelAvisos">
+            <div class="painelAviso">
+                <h1>Sem Aviso</h1>
+                <p></p>
+            </div> 
+            <div class="painelAviso">
+                <h1>Carteirinha</h1>
+                <p>Novo controle de presença será a carteira, cada aluno terá a sua para passar o QRCODE na hora da chegada e saída.</p>
+                <p>Pagar para a Liderança o valor de 5 reais até segunda feira</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fim Painel de Avisos -->
+
+    <!-- Atividades e Provas-->
+    <section class="containerAtvdEProvas">
+        <h1 class="atvTitle">ATIVIDADES E PROVAS</h1>
+        <div class="wrapper">
+            <i id="left" class="fa-solid fa-angle-left"></i>
+            <ul class="carousel">
+              <li class="card">
+                <h1>Sala 101</h1>
+                <h2>Atividades Importantes</h2>
+                <ul>
+                    <li>Seminario de Biologia</li>
+                    <li>Video de Inglês</li>
+                    <li>Atividade de Quimica</li>
+                    <li>Atividade de Matematica</li>
+                    <li>Seminario de Rede de Computadores</li>
+                </ul>
+                <h2>Provas de Segunda</h2>
+                <p>Matematica</p>
+                <p>Quimica</p>
+                <p>Biologia</p>
+              </li>
+              <li class="card">
+                <h1>Sala 102</h1>
+                <h2>Atividades Importantes</h2>
+                <ul>
+                    <li>Seminario de Biologia</li>
+                    <li>Video de Inglês</li>
+                    <li>Atividade de Quimica</li>
+                    <li>Atividade de Matematica</li>
+                    <li>Seminario de Rede de Computadores</li>
+                </ul>
+                <h2>Provas de Segunda</h2>
+                <p>Matematica</p>
+                <p>Quimica</p>
+                <p>Biologia</p>
+              </li>
+              <li class="card">
+                <h1>Sala 103</h1>
+                <h2>Atividades Importantes</h2>
+                <ul>
+                    <li>Seminario de Biologia</li>
+                    <li>Video de Inglês</li>
+                    <li>Atividade de Quimica</li>
+                    <li>Atividade de Matematica</li>
+                    <li>Seminario de Rede de Computadores</li>
+                </ul>
+                <h2>Provas de Segunda</h2>
+                <p>Matematica</p>
+                <p>Quimica</p>
+                <p>Biologia</p>
+              </li>
+              <li class="card">
+                <h1>Sala 104</h1>
+                <h2>Atividades Importantes</h2>
+                <ul>
+                    <li>Seminario de Biologia</li>
+                    <li>Video de Inglês</li>
+                    <li>Atividade de Quimica</li>
+                    <li>Atividade de Matematica</li>
+                    <li>Seminario de Rede de Computadores</li>
+                </ul>
+                <h2>Provas de Segunda</h2>
+                <p>Matematica</p>
+                <p>Quimica</p>
+                <p>Biologia</p>
+              </li>
+              <li class="card">
+                <h1>Sala 201</h1>
+                <h2>Atividades Importantes</h2>
+                <ul>
+                    <li>Seminario de Biologia</li>
+                    <li>Video de Inglês</li>
+                    <li>Atividade de Quimica</li>
+                    <li>Atividade de Matematica</li>
+                    <li>Seminario de Rede de Computadores</li>
+                </ul>
+                <h2>Provas de Segunda</h2>
+                <p>Matematica</p>
+                <p>Quimica</p>
+                <p>Biologia</p>
+              </li>
+              <li class="card">
+                <h1>Sala 202</h1>
+                <h2>Atividades Importantes</h2>
+                <ul>
+                    <li>Seminario de Biologia</li>
+                    <li>Video de Inglês</li>
+                    <li>Atividade de Quimica</li>
+                    <li>Atividade de Matematica</li>
+                    <li>Seminario de Rede de Computadores</li>
+                </ul>
+                <h2>Provas de Segunda</h2>
+                <p>Matematica</p>
+                <p>Quimica</p>
+                <p>Biologia</p>
+              </li>
+              <li class="card">
+                <h1>Sala 203</h1>
+                <h2>Atividades Importantes</h2>
+                <ul>
+                    <li>Seminario de Biologia</li>
+                    <li>Video de Inglês</li>
+                    <li>Atividade de Quimica</li>
+                    <li>Atividade de Matematica</li>
+                    <li>Seminario de Rede de Computadores</li>
+                </ul>
+                <h2>Provas de Segunda</h2>
+                <p>Matematica</p>
+                <p>Quimica</p>
+                <p>Biologia</p>
+              </li>
+              <li class="card">
+                <</h1>
+                <h2>Atividades Importantes</h2>
+                <ul>
+                    <li>Seminario de Biologia</li>
+                    <li>Video de Inglês</li>
+                    <li>Atividade de Quimica</li>
+                    <li>Atividade de Matematica</li>
+                    <li>Seminario de Rede de Computadores</li>
+                </ul>
+                <h2>Provas de Segunda</h2>
+                <p>Matematica</p>
+                <p>Quimica</p>
+                <p>Biologia</p>
+              </li>
+              <li class="card">
+                <h1>Sala 301</h1>
+                <h2>Atividades Importantes</h2>
+                <ul>
+                    <li>Seminario de Biologia</li>
+                    <li>Video de Inglês</li>
+                    <li>Atividade de Quimica</li>
+                    <li>Atividade de Matematica</li>
+                    <li>Seminario de Rede de Computadores</li>
+                </ul>
+                <h2>Provas de Segunda</h2>
+                <p>Matematica</p>
+                <p>Quimica</p>
+                <p>Biologia</p>
+              </li>
+              <li class="card">
+                <h1>Sala 302</h1>
+                <h2>Atividades Importantes</h2>
+                <ul>
+                    <li>Seminario de Biologia</li>
+                    <li>Video de Inglês</li>
+                    <li>Atividade de Quimica</li>
+                    <li>Atividade de Matematica</li>
+                    <li>Seminario de Rede de Computadores</li>
+                </ul>
+                <h2>Provas de Segunda</h2>
+                <p>Matematica</p>
+                <p>Quimica</p>
+                <p>Biologia</p>
+              </li>
+              <li class="card">
+                <h1>Sala 303</h1>
+                <h2>Atividades Importantes</h2>
+                <ul>
+                    <li>Seminario de Biologia</li>
+                    <li>Video de Inglês</li>
+                    <li>Atividade de Quimica</li>
+                    <li>Atividade de Matematica</li>
+                    <li>Seminario de Rede de Computadores</li>
+                </ul>
+                <h2>Provas de Segunda</h2>
+                <p>Matematica</p>
+                <p>Quimica</p>
+                <p>Biologia</p>
+              </li>
+              <li class="card">
+                <h1>Sala 304</h1>
+                <h2>Atividades Importantes</h2>
+                <ul>
+                    <li>Seminario de Biologia</li>
+                    <li>Video de Inglês</li>
+                    <li>Atividade de Quimica</li>
+                    <li>Atividade de Matematica</li>
+                    <li>Seminario de Rede de Computadores</li>
+                </ul>
+                <h2>Provas de Segunda</h2>
+                <p>Matematica</p>
+                <p>Quimica</p>
+                <p>Biologia</p>
+              </li>
+            </ul>
+            <i id="right" class="fa-solid fa-angle-right"></i>
+          </div>
+        <button class="verMaisBtn"><a href="atividades.html">VER MAIS</a></button>
+    </section>
+    <!-- Fim Atividades e Provas-->
+
+    <!-- Eventos -->
+
+    <section class="containerEventos">
+        <h1>Eventos</h1>
+
+        <p>Caminhada Ecológica do IEMA. Nossos alunos foram às ruas para fazer a diferença! Juntos, por um futuro mais verde.</p>
+       
+        <img src="./assets/images/eventos.jpg" alt="">
+    </section>
+
+    <!-- Fim Horario de Aula -->
+
+    <!-- Quiz -->
+    <section class="containerQuiz">
+        <div class="painelQuiz">
+            <h1 class="h1Quiz">Quiz</h1>
+            <!-- <p class="pQuiz">faça os exercicios para testar seus conhecimentos e estudar para avaliação semanal</p> -->
+            <h3 class="pQuiz">Quiz disponivel para testes</h3>
+            <button class="quizBtn"><a href="quiz.html">Fazer Quiz</a></button>
+        </div>
+    </section>
+
+
+    <!--Fim Quiz -->
+
+    <!-- Colaboradores -->
+    <section class="containerColaboradores">
+        <h1 class="colaboradoresTitle">Fundadores</h1>
+        <div class="painelColaboradores">
+            <div class="painelColaborador">
+                <img src="./assets/images/fotoyohana.jpg" alt="" class="imgColaborador">
+                <p class="nomeColaborador">Yohana</p>
+                <p class="funcaoColaborador">Desenvolvedor Front-End, Designer</p>
+            </div>
+            <div class="painelColaborador">
+                <img src="./assets/images/iuryfoto.jpeg" alt="" class="imgColaborador">
+                <p class="nomeColaborador">Iury Gabriel</p>
+                <p class="funcaoColaborador">Desenvolvedor Front-End</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fim Colaboradores -->
+
+    <!-- Footer -->
+
+    <footer class="footer">
+        <p class="footerText">Portal Iemanos - Todos os direitos reservados</p>
+        <p class="footerColaboradores">Desenvolvido por Yohana e Iury</p>
+    </footer>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
