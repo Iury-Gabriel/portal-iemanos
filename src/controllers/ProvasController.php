@@ -6,7 +6,11 @@ use \core\Controller;
 class ProvasController extends Controller {
 
     public function index() {
-        $this->render('provas');
+        if(isset($_COOKIE['aluno'])) {
+            $this->render('provas');
+        } else {
+            $this->redirect('/login');
+        }
     }
 
 }

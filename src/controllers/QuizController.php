@@ -6,7 +6,11 @@ use \core\Controller;
 class QuizController extends Controller {
 
     public function index() {
-        $this->render('quiz');
+        if(isset($_COOKIE['aluno'])) {
+            $this->render('quiz');
+        } else {
+            $this->redirect('/login');
+        }
     }
 
 }

@@ -6,7 +6,11 @@ use \core\Controller;
 class AtividadesController extends Controller {
 
     public function index() {
-        $this->render('atividades');
+        if(isset($_COOKIE['aluno'])) {
+            $this->render('atividades');
+        } else {
+            $this->redirect('/login');
+        }
     }
 
 }
