@@ -65,15 +65,12 @@
     <section class="containerAvisos">
         <h1 class="avisoTitle">PAINEL DE AVISOS</h1>
         <div class="painelAvisos">
-            <div class="painelAviso">
-                <h1>Sem Aviso</h1>
-                <p></p>
-            </div> 
-            <div class="painelAviso">
-                <h1>Carteirinha</h1>
-                <p>Novo controle de presença será a carteira, cada aluno terá a sua para passar o QRCODE na hora da chegada e saída.</p>
-                <p>Pagar para a Liderança o valor de 5 reais até segunda feira</p>
-            </div>
+            <?php foreach($avisos as $aviso): ?>
+                <div class="painelAviso">
+                    <h1><?= $aviso['titulo'] ?></h1>
+                    <p><?= $aviso['conteudo'] ?></p>
+                </div> 
+            <?php endforeach; ?>
         </div>
     </section>
 
@@ -176,14 +173,12 @@
                 <p>Biologia</p>
               </li>
               <li class="card">
-                <h1>Sala 203</h1>
-                <h2>Atividades Importantes</h2>
+                <h1>Sala <?= $sala_id ?></h1>
+                <h2>Atividades Recentes</h2>
                 <ul>
-                    <li>Seminario de Biologia</li>
-                    <li>Video de Inglês</li>
-                    <li>Atividade de Quimica</li>
-                    <li>Atividade de Matematica</li>
-                    <li>Seminario de Rede de Computadores</li>
+                    <?php foreach($atividades as $atividade): ?>
+                        <li><?= $atividade['titulo'] ?></li>
+                    <?php endforeach; ?>
                 </ul>
                 <h2>Provas de Segunda</h2>
                 <p>Matematica</p>
@@ -191,7 +186,7 @@
                 <p>Biologia</p>
               </li>
               <li class="card">
-                <</h1>
+                <h1>Sala 204</h1>
                 <h2>Atividades Importantes</h2>
                 <ul>
                     <li>Seminario de Biologia</li>
@@ -277,8 +272,11 @@
     <section class="containerEventos">
         <h1>Eventos</h1>
 
-        <p>Caminhada Ecológica do IEMA. Nossos alunos foram às ruas para fazer a diferença! Juntos, por um futuro mais verde.</p>
-       
+        <?php foreach($eventos as $evento): ?>
+            <h3><?= $evento['titulo'] ?></h3>
+            <p><?= $evento['descricao'] ?></p>
+        <?php endforeach; ?>
+
         <img src="./assets/images/eventos.jpg" alt="">
     </section>
 
@@ -304,12 +302,12 @@
             <div class="painelColaborador">
                 <img src="./assets/images/fotoyohana.jpg" alt="" class="imgColaborador">
                 <p class="nomeColaborador">Yohana</p>
-                <p class="funcaoColaborador">Desenvolvedor Front-End, Designer</p>
+                <p class="funcaoColaborador">Desenvolvedor Front-End/Back-End, Designer</p>
             </div>
             <div class="painelColaborador">
                 <img src="./assets/images/iuryfoto.jpeg" alt="" class="imgColaborador">
                 <p class="nomeColaborador">Iury Gabriel</p>
-                <p class="funcaoColaborador">Desenvolvedor Front-End</p>
+                <p class="funcaoColaborador">Desenvolvedor Front-End/Back-End</p>
             </div>
         </div>
     </section>
