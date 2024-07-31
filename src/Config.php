@@ -4,11 +4,11 @@ namespace src;
 use PDO;
 
 class Config {
-    const BASE_DIR = '/portal-iemanos';
+    const BASE_DIR = '/portaliemanos';
 
     const DB_DRIVER = 'mysql';
     const DB_HOST = 'localhost';
-    const DB_DATABASE = 'portaliemanos';
+    const DB_DATABASE = 'portal';
     const DB_USER = 'root';
     const DB_PASS = '';
 

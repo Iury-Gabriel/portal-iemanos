@@ -181,9 +181,9 @@
                     <?php endforeach; ?>
                 </ul>
                 <h2>Provas de Segunda</h2>
-                <p>Matematica</p>
-                <p>Quimica</p>
-                <p>Biologia</p>
+                <?php foreach($provas as $prova): ?>
+                    <p><?= $prova['nome'] ?></p>
+                <?php endforeach; ?>
               </li>
               <li class="card">
                 <h1>Sala 204</h1>
