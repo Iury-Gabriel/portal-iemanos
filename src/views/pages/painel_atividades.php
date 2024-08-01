@@ -131,6 +131,8 @@
         </div>
     </div>
 
+    <script src="../assets/js/dicas.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var modal = document.getElementById("activityModal");

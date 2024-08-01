@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <title>Portal Iemanos</title>
 </head>
+
 <body>
-    
+
     <!-- Header e Banner-->
     <header class="bannerHeader">
         <div class="headerContainer">
@@ -26,10 +28,10 @@
                             <li><a href="<?= $base ?>/provas">Provas</a></li>
                             <li><a href="<?= $base ?>/quiz">Quiz</a></li>
                             <li><a href="<?= $base ?>/dicas">Dicas</a></li>
-                            <?php 
-                                if($cargo != 'aluno') {
-                                    echo '<li><a href="' . $base . '/painel">Painel</a></li>';    
-                                }
+                            <?php
+                            if ($cargo != 'aluno') {
+                                echo '<li><a href="' . $base . '/painel">Painel</a></li>';
+                            }
                             ?>
                             <li><a href="<?= $base ?>/logout">Sair</a></li>
                         </ul>
@@ -41,10 +43,10 @@
                             <li><a href="<?= $base ?>/provas">Provas</a></li>
                             <li><a href="<?= $base ?>/quiz">Quiz</a></li>
                             <li><a href="<?= $base ?>/dicas">Dicas</a></li>
-                            <?php 
-                                if($cargo != 'aluno') {
-                                    echo '<li><a href="' . $base . '/painel">Painel</a></li>';    
-                                }
+                            <?php
+                            if ($cargo != 'aluno') {
+                                echo '<li><a href="' . $base . '/painel">Painel</a></li>';
+                            }
                             ?>
                             <li><a href="<?= $base ?>/logout">Sair</a></li>
                         </ul>
@@ -77,11 +79,11 @@
     <section class="containerAvisos">
         <h1 class="avisoTitle">PAINEL DE AVISOS</h1>
         <div class="painelAvisos">
-            <?php foreach($avisos as $aviso): ?>
+            <?php foreach ($avisos as $aviso) : ?>
                 <div class="painelAviso">
                     <h1><?= $aviso['titulo'] ?></h1>
                     <p><?= $aviso['conteudo'] ?></p>
-                </div> 
+                </div>
             <?php endforeach; ?>
         </div>
     </section>
@@ -91,190 +93,23 @@
     <!-- Atividades e Provas-->
     <section class="containerAtvdEProvas">
         <h1 class="atvTitle">ATIVIDADES E PROVAS</h1>
-        <div class="wrapper">
-            <i id="left" class="fa-solid fa-angle-left"></i>
-            <ul class="carousel">
-              <li class="card">
-                <h1>Sala 101</h1>
-                <h2>Atividades Importantes</h2>
-                <ul>
-                    <li>Seminario de Biologia</li>
-                    <li>Video de Inglês</li>
-                    <li>Atividade de Quimica</li>
-                    <li>Atividade de Matematica</li>
-                    <li>Seminario de Rede de Computadores</li>
-                </ul>
-                <h2>Provas de Segunda</h2>
-                <p>Matematica</p>
-                <p>Quimica</p>
-                <p>Biologia</p>
-              </li>
-              <li class="card">
-                <h1>Sala 102</h1>
-                <h2>Atividades Importantes</h2>
-                <ul>
-                    <li>Seminario de Biologia</li>
-                    <li>Video de Inglês</li>
-                    <li>Atividade de Quimica</li>
-                    <li>Atividade de Matematica</li>
-                    <li>Seminario de Rede de Computadores</li>
-                </ul>
-                <h2>Provas de Segunda</h2>
-                <p>Matematica</p>
-                <p>Quimica</p>
-                <p>Biologia</p>
-              </li>
-              <li class="card">
-                <h1>Sala 103</h1>
-                <h2>Atividades Importantes</h2>
-                <ul>
-                    <li>Seminario de Biologia</li>
-                    <li>Video de Inglês</li>
-                    <li>Atividade de Quimica</li>
-                    <li>Atividade de Matematica</li>
-                    <li>Seminario de Rede de Computadores</li>
-                </ul>
-                <h2>Provas de Segunda</h2>
-                <p>Matematica</p>
-                <p>Quimica</p>
-                <p>Biologia</p>
-              </li>
-              <li class="card">
-                <h1>Sala 104</h1>
-                <h2>Atividades Importantes</h2>
-                <ul>
-                    <li>Seminario de Biologia</li>
-                    <li>Video de Inglês</li>
-                    <li>Atividade de Quimica</li>
-                    <li>Atividade de Matematica</li>
-                    <li>Seminario de Rede de Computadores</li>
-                </ul>
-                <h2>Provas de Segunda</h2>
-                <p>Matematica</p>
-                <p>Quimica</p>
-                <p>Biologia</p>
-              </li>
-              <li class="card">
-                <h1>Sala 201</h1>
-                <h2>Atividades Importantes</h2>
-                <ul>
-                    <li>Seminario de Biologia</li>
-                    <li>Video de Inglês</li>
-                    <li>Atividade de Quimica</li>
-                    <li>Atividade de Matematica</li>
-                    <li>Seminario de Rede de Computadores</li>
-                </ul>
-                <h2>Provas de Segunda</h2>
-                <p>Matematica</p>
-                <p>Quimica</p>
-                <p>Biologia</p>
-              </li>
-              <li class="card">
-                <h1>Sala 202</h1>
-                <h2>Atividades Importantes</h2>
-                <ul>
-                    <li>Seminario de Biologia</li>
-                    <li>Video de Inglês</li>
-                    <li>Atividade de Quimica</li>
-                    <li>Atividade de Matematica</li>
-                    <li>Seminario de Rede de Computadores</li>
-                </ul>
-                <h2>Provas de Segunda</h2>
-                <p>Matematica</p>
-                <p>Quimica</p>
-                <p>Biologia</p>
-              </li>
-              <li class="card">
+        <div class="painelAtvEProvas">
+            <div class="painelAtvEProva">
                 <h1>Sala <?= $sala_id ?></h1>
                 <h2>Atividades Recentes</h2>
-                <ul>
-                    <?php foreach($atividades as $atividade): ?>
-                        <li><?= $atividade['titulo'] ?></li>
-                    <?php endforeach; ?>
-                </ul>
-                <h2>Provas de Segunda</h2>
-                <?php foreach($provas as $prova): ?>
-                    <p><?= $prova['nome'] ?></p>
+                <?php foreach ($atividades as $atividade) : ?>
+                    <p><?= $atividade['titulo'] ?></p>
                 <?php endforeach; ?>
-              </li>
-              <li class="card">
-                <h1>Sala 204</h1>
-                <h2>Atividades Importantes</h2>
-                <ul>
-                    <li>Seminario de Biologia</li>
-                    <li>Video de Inglês</li>
-                    <li>Atividade de Quimica</li>
-                    <li>Atividade de Matematica</li>
-                    <li>Seminario de Rede de Computadores</li>
-                </ul>
+            </div>
+
+            <div class="painelAtvEProva">
+                <h1>Sala <?= $sala_id ?></h1>
                 <h2>Provas de Segunda</h2>
-                <p>Matematica</p>
-                <p>Quimica</p>
-                <p>Biologia</p>
-              </li>
-              <li class="card">
-                <h1>Sala 301</h1>
-                <h2>Atividades Importantes</h2>
-                <ul>
-                    <li>Seminario de Biologia</li>
-                    <li>Video de Inglês</li>
-                    <li>Atividade de Quimica</li>
-                    <li>Atividade de Matematica</li>
-                    <li>Seminario de Rede de Computadores</li>
-                </ul>
-                <h2>Provas de Segunda</h2>
-                <p>Matematica</p>
-                <p>Quimica</p>
-                <p>Biologia</p>
-              </li>
-              <li class="card">
-                <h1>Sala 302</h1>
-                <h2>Atividades Importantes</h2>
-                <ul>
-                    <li>Seminario de Biologia</li>
-                    <li>Video de Inglês</li>
-                    <li>Atividade de Quimica</li>
-                    <li>Atividade de Matematica</li>
-                    <li>Seminario de Rede de Computadores</li>
-                </ul>
-                <h2>Provas de Segunda</h2>
-                <p>Matematica</p>
-                <p>Quimica</p>
-                <p>Biologia</p>
-              </li>
-              <li class="card">
-                <h1>Sala 303</h1>
-                <h2>Atividades Importantes</h2>
-                <ul>
-                    <li>Seminario de Biologia</li>
-                    <li>Video de Inglês</li>
-                    <li>Atividade de Quimica</li>
-                    <li>Atividade de Matematica</li>
-                    <li>Seminario de Rede de Computadores</li>
-                </ul>
-                <h2>Provas de Segunda</h2>
-                <p>Matematica</p>
-                <p>Quimica</p>
-                <p>Biologia</p>
-              </li>
-              <li class="card">
-                <h1>Sala 304</h1>
-                <h2>Atividades Importantes</h2>
-                <ul>
-                    <li>Seminario de Biologia</li>
-                    <li>Video de Inglês</li>
-                    <li>Atividade de Quimica</li>
-                    <li>Atividade de Matematica</li>
-                    <li>Seminario de Rede de Computadores</li>
-                </ul>
-                <h2>Provas de Segunda</h2>
-                <p>Matematica</p>
-                <p>Quimica</p>
-                <p>Biologia</p>
-              </li>
-            </ul>
-            <i id="right" class="fa-solid fa-angle-right"></i>
-          </div>
+                <?php foreach ($provas as $prova) : ?>
+                    <p class="prova"><?= $prova['nome'] ?></p>
+                <?php endforeach; ?>
+            </div>
+        </div>
         <button class="verMaisBtn"><a href="atividades.html">VER MAIS</a></button>
     </section>
     <!-- Fim Atividades e Provas-->
@@ -284,7 +119,7 @@
     <section class="containerEventos">
         <h1>Eventos</h1>
 
-        <?php foreach($eventos as $evento): ?>
+        <?php foreach ($eventos as $evento) : ?>
             <h3><?= $evento['titulo'] ?></h3>
             <p><?= $evento['descricao'] ?></p>
         <?php endforeach; ?>
@@ -335,4 +170,5 @@
 
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
