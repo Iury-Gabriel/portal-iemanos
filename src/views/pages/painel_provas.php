@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/painel.css">
-    <title>Painel Atividades</title>
+    <title>Painel Provas</title>
 </head>
 
 <body>
@@ -66,30 +66,32 @@
     <!-- Início de Dicas -->
     <section class="containerDicas">
         <div class="buttonContainer">
-            <button id="createActivityBtn">Criar Nova Atividade</button>
+            <button id="createActivityBtn">Criar Nova Prova</button>
         </div>
         <table class="activityTable">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Título</th>
-                    <th>Descrição</th>
-                    <th>Data</th>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Data da Prova</th>
                     <th>Disciplina</th>
+                    <th>O que estudar</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($atividades as $atividade) : ?>
+                <?php foreach ($provas as $prova) : ?>
                     <tr>
-                        <td data-label="ID"><?= htmlspecialchars($atividade['id']) ?></td>
-                        <td data-label="Título"><?= htmlspecialchars($atividade['titulo']) ?></td>
-                        <td data-label="Descrição"><?= htmlspecialchars($atividade['descricao']) ?></td>
-                        <td data-label="Data"><?= empty($atividade['data_entrega']) ? 'Indefinida' : htmlspecialchars($atividade['data_entrega']) ?></td>
-                        <td data-label="Disciplina"><?= htmlspecialchars($atividade['disciplina_nome']) ?></td>
+                        <td data-label="ID"><?= htmlspecialchars($prova['id']) ?></td>
+                        <td data-label="Nome"><?= htmlspecialchars($prova['nome']) ?></td>
+                        <td data-label="Tipo"><?= htmlspecialchars($prova['tipo']) ?></td>
+                        <td data-label="Data"><?= empty($prova['data_prova']) ? 'Indefinida' : htmlspecialchars($prova['data_prova']) ?></td>
+                        <td data-label="Disciplina"><?= htmlspecialchars($prova['disciplina_nome']) ?></td>
+                        <td data-label="O que estudar"><?= htmlspecialchars($prova['o_que_estudar']) ?></td>
                         <td data-label="Ações" class="actionButtons">
-                            <button class="edit" onclick="openEditModal('<?= $atividade['id'] ?>', '<?= htmlspecialchars($atividade['titulo']) ?>', '<?= htmlspecialchars($atividade['descricao']) ?>', '<?= htmlspecialchars($atividade['data_entrega']) ?>', '<?= htmlspecialchars($atividade['disciplina_id']) ?>')">Editar</button>
-                            <button class="delete" onclick="window.location.href='<?= $base ?>/painel/atividades/excluir?id=<?= $atividade['id'] ?>'">Excluir</button>
+                            <button class="edit" onclick="openEditModal('<?= $prova['id'] ?>', '<?= htmlspecialchars($prova['nome']) ?>', '<?= htmlspecialchars($prova['tipo']) ?>', '<?= htmlspecialchars($prova['data_prova']) ?>', '<?= htmlspecialchars($prova['disciplina_id']) ?>', '<?= htmlspecialchars($prova['o_que_estudar']) ?>')">Editar</button>
+                            <button class="delete" onclick="window.location.href='<?= $base ?>/painel/provas/excluir?id=<?= $prova['id'] ?>'">Excluir</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -97,19 +99,23 @@
         </table>
     </section>
 
-    <!-- Modal para criar/editar atividade -->
+    <!-- Modal para criar/editar prova -->
     <div id="activityModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <form id="activityForm">
                 <input type="hidden" id="activityId" name="id">
                 <div>
-                    <label for="titulo">Título:</label>
-                    <input type="text" id="titulo" name="titulo" required>
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
                 </div>
                 <div>
-                    <label for="descricao">Descrição:</label>
-                    <textarea id="descricao" name="descricao" required></textarea>
+                    <label for="tipo">Tipo:</label>
+                    <select id="tipo" name="tipo" required>
+                        <option value="">Selecione um tipo</option>
+                        <option value="AV1">AV1</option>
+                        <option value="AV3">AV3</option>
+                    </select>
                 </div>
                 <div>
                     <label for="data">Data:</label>
@@ -126,6 +132,11 @@
                         <?php endforeach; ?>
                     </select>
                 </div>
+                <div>
+                    <label for="o_que_estudar">O que estudar:</label>
+                    <textarea id="o_que_estudar" name="o_que_estudar" required></textarea>
+                </div>
+
                 <button type="submit">Salvar</button>
             </form>
         </div>
@@ -144,7 +155,11 @@
             btn.onclick = function() {
                 form.reset();
                 document.getElementById("activityId").value = '';
-                form.action = '<?= $base ?>/painel/atividades/criar'; // Configurar ação para criação
+                document.getElementById("tipo").value = '';
+                document.getElementById("data").value = '';
+                document.getElementById("disciplina").value = '';
+                document.getElementById("o_que_estudar").value = '';
+                form.action = '<?= $base ?>/painel/provas/criar'; // Configurar ação para criação
                 modal.style.display = "block";
             }
 
@@ -162,7 +177,7 @@
                 event.preventDefault();
 
                 var id = document.getElementById("activityId").value;
-                var action = id ? '<?= $base ?>/painel/atividades/editar' : '<?= $base ?>/painel/atividades/criar';
+                var action = id ? '<?= $base ?>/painel/provas/editar' : '<?= $base ?>/painel/provas/criar';
 
                 fetch(action, {
                         method: 'POST',
@@ -171,17 +186,23 @@
                         },
                         body: new URLSearchParams(new FormData(form)).toString()
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            if (data.redirect) {
-                                window.location.href = baseUrl + data.redirect; 
+                    .then(response => response.text()) // Mude para text para ver o conteúdo completo
+                    .then(text => {
+                        try {
+                            const data = JSON.parse(text); // Tenta converter o texto para JSON
+                            if (data.success) {
+                                if (data.redirect) {
+                                    window.location.href = baseUrl + data.redirect;
+                                } else {
+                                    modal.style.display = "none";
+                                    location.reload();
+                                }
                             } else {
-                                modal.style.display = "none";
-                                location.reload(); 
+                                alert('Erro: ' + data.message);
                             }
-                        } else {
-                            alert('Erro: ' + data.message); 
+                        } catch (e) {
+                            console.error('Erro ao parsear JSON:', e);
+                            alert('Ocorreu um erro inesperado. Veja o console para mais detalhes.');
                         }
                     })
                     .catch(error => {
@@ -191,13 +212,18 @@
 
         });
 
-        function openEditModal(id, titulo, descricao, data, disciplina_id) {
+        function openEditModal(id, nome, tipo, data, disciplina_id, o_que_estudar) {
+            // Remover caracteres especiais e espaços extras
+            let sanitizedOQueEstudar = o_que_estudar.replace(/<\/?[^>]+(>|$)/g, ""); // Remover tags HTML
+            sanitizedOQueEstudar = sanitizedOQueEstudar.replace(/[\r\n]+/g, '\n'); // Normalizar quebras de linha
+
             document.getElementById("activityId").value = id;
-            document.getElementById("titulo").value = titulo;
-            document.getElementById("descricao").value = descricao;
+            document.getElementById("nome").value = nome;
+            document.getElementById("tipo").value = tipo;
             document.getElementById("data").value = data;
-            document.getElementById("disciplina").value = disciplina_id; // Definir a disciplina selecionada
-            document.getElementById("activityForm").action = '<?= $base ?>/painel/atividades/editar'; // Configurar ação para edição
+            document.getElementById("disciplina").value = disciplina_id;
+            document.getElementById("o_que_estudar").value = sanitizedOQueEstudar;
+            document.getElementById("activityForm").action = '<?= $base ?>/painel/provas/editar';
             document.getElementById("activityModal").style.display = "block";
         }
     </script>

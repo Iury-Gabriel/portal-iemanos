@@ -168,4 +168,155 @@ class PainelController extends Controller
             $this->redirect('/login');
         }
     }
+
+    public function provas()
+    {
+        if (isset($_COOKIE['aluno'])) {
+            $alunoArray = json_decode($_COOKIE['aluno'], true);
+            $salaId = $alunoArray['sala_id'] ?? null;
+            $cargo = $alunoArray['cargo'] ?? null;
+            if ($cargo != 'aluno') {
+                $pdo = Config::getPDO();
+
+                $provas = [];
+                $sql = $pdo->prepare("
+                    SELECT p.*, d.nome AS disciplina_nome 
+                    FROM provas p
+                    LEFT JOIN disciplinas d ON p.disciplina_id = d.id
+                    WHERE p.sala_id = :salaId
+                ");
+                $sql->execute(['salaId' => $salaId]);
+                if ($sql->rowCount() > 0) {
+                    $provas = $sql->fetchAll(PDO::FETCH_ASSOC);
+                }
+
+
+                $disciplinas = [];
+                $sql = $pdo->prepare("SELECT * from disciplinas WHERE sala_id = :salaId");
+                $sql->execute(['salaId' => $salaId]);
+                if ($sql->rowCount() > 0) {
+                    $disciplinas = $sql->fetchAll(PDO::FETCH_ASSOC);
+                }
+
+                $this->render('painel_provas', ['cargo' => $cargo, 'provas' => $provas, 'disciplinas' => $disciplinas]);
+            } else {
+                $this->redirect('/');
+            }
+        } else {
+            $this->redirect('/login');
+        }
+    }
+
+    public function criarProva()
+    {
+        if (isset($_COOKIE['aluno'])) {
+            $alunoArray = json_decode($_COOKIE['aluno'], true);
+            $salaId = $alunoArray['sala_id'] ?? null;
+            $cargo = $alunoArray['cargo'] ?? null;
+
+            if ($cargo != 'aluno') {
+                $pdo = Config::getPDO();
+
+                $nome = filter_input(INPUT_POST, 'nome');
+                $tipo = filter_input(INPUT_POST, 'tipo');
+                $data = filter_input(INPUT_POST, 'data');
+                $disciplina = filter_input(INPUT_POST, 'disciplina');
+                $o_que_estudar = filter_input(INPUT_POST, 'o_que_estudar');
+
+                $sql = $pdo->prepare("INSERT INTO provas (sala_id, nome, tipo, data_prova, disciplina_id, o_que_estudar) VALUES (:salaId, :nome, :tipo, :data_prova, :disciplina, :o_que_estudar)");
+                $result = $sql->execute([
+                    'salaId' => $salaId,
+                    'nome' => $nome,
+                    'tipo' => $tipo,
+                    'data_prova' => $data,
+                    'disciplina' => $disciplina,
+                    'o_que_estudar' => $o_que_estudar
+                ]);
+
+                header('Content-Type: application/json');
+                if ($result) {
+                    echo json_encode(['success' => true, 'message' => 'Prova criada com sucesso!', 'redirect' => '/painel/provas']);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Falha ao criar prova.']);
+                }
+            } else {
+                header('Content-Type: application/json');
+                echo json_encode(['success' => false, 'message' => 'Acesso negado.', 'redirect' => '/']);
+            }
+        } else {
+            header('Content-Type: application/json');
+            echo json_encode(['success' => false, 'message' => 'Usuário não autenticado.', 'redirect' => '/login']);
+        }
+    }
+
+
+    public function editarProva()
+    {
+        if (isset($_COOKIE['aluno'])) {
+            $alunoArray = json_decode($_COOKIE['aluno'], true);
+            $cargo = $alunoArray['cargo'] ?? null;
+
+            if ($cargo != 'aluno') {
+                $pdo = Config::getPDO();
+
+                $id = filter_input(INPUT_POST, 'id');
+                $nome = filter_input(INPUT_POST, 'nome');
+                $tipo = filter_input(INPUT_POST, 'tipo');
+                $data = filter_input(INPUT_POST, 'data');
+                $disciplina = filter_input(INPUT_POST, 'disciplina');
+                $o_que_estudar = filter_input(INPUT_POST, 'o_que_estudar');
+
+                $sql = $pdo->prepare("UPDATE provas SET nome = :nome, tipo = :tipo, data_prova = :data_prova, disciplina_id = :disciplina, o_que_estudar = :o_que_estudar WHERE id = :id");
+                $result = $sql->execute([
+                    'nome' => $nome,
+                    'tipo' => $tipo,
+                    'data_prova' => $data,
+                    'disciplina' => $disciplina,
+                    'o_que_estudar' => $o_que_estudar,
+                    'id' => $id
+                ]);
+
+                header('Content-Type: application/json');
+                if ($result) {
+                    echo json_encode(['success' => true, 'message' => 'Prova atualizada com sucesso!', 'redirect' => '/painel/provas']);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Falha ao editar prova.']);
+                }
+            } else {
+                header('Content-Type: application/json');
+                echo json_encode(['success' => false, 'message' => 'Acesso negado.', 'redirect' => '/']);
+            }
+        } else {
+            header('Content-Type: application/json');
+            echo json_encode(['success' => false, 'message' => 'Usuário não autenticado.', 'redirect' => '/login']);
+        }
+    }
+
+    public function excluirProva()
+    {
+        if (isset($_COOKIE['aluno'])) {
+            $alunoArray = json_decode($_COOKIE['aluno'], true);
+            $cargo = $alunoArray['cargo'] ?? null;
+
+            if ($cargo != 'aluno') {
+                $pdo = Config::getPDO();
+
+                $id = filter_input(INPUT_GET, 'id');
+
+                $sql = $pdo->prepare("DELETE FROM provas WHERE id = :id");
+                $result = $sql->execute([
+                    'id' => $id
+                ]);
+
+                header('Content-Type: application/json');
+                if ($result) {
+                    $this->redirect('/painel/provas');
+                }
+            } else {
+                $this->redirect('/');
+            }
+        } else {
+            $this->redirect('/login');
+        }
+    }
 }

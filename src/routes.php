@@ -21,3 +21,8 @@ $router->get('/painel/atividades', 'PainelController@atividades');
 $router->post('/painel/atividades/criar', 'PainelController@criarAtividade');
 $router->post('/painel/atividades/editar', 'PainelController@editarAtividade');
 $router->get('/painel/atividades/excluir', 'PainelController@excluirAtividade');
+
+$router->get('/painel/provas', 'PainelController@provas');
+$router->post('/painel/provas/criar', 'PainelController@criarProva');
+$router->post('/painel/provas/editar', 'PainelController@editarProva');
+$router->get('/painel/provas/excluir', 'PainelController@excluirProva');

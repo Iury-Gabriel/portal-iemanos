@@ -63,7 +63,58 @@
 
     <!-- Início de Dicas -->
     <section class="containerDicas">
-                
+        <div class="welcome-message">
+            Bem-vindo, <?= $cargo == 'admin' ? 'Admin' : 'Lider' ?>!
+        </div>
+        <div class="grid-container">
+            <div class="grid-item">
+                <h3>Atividades</h3>
+                <p>Nesta seção, você pode listar, editar, excluir e criar novas atividades para os alunos.</p>
+                <a href="<?= $base ?>/painel/atividades">Gerenciar Atividades</a>
+            </div>
+            <div class="grid-item">
+                <h3>Provas</h3>
+                <p>Nesta seção, você pode criar, editar e visualizar provas para os alunos.</p>
+                <a href="<?= $base ?>/painel/provas">Gerenciar Provas</a>
+            </div>
+            <?php if($cargo == 'admin'): ?>
+                <div class="grid-item">
+                    <h3>Alunos</h3>
+                    <p>Nesta seção, você pode visualizar e gerenciar todos os alunos cadastrados no sistema.</p>
+                    <a href="<?= $base ?>/painel/alunos">Gerenciar Alunos</a>
+                </div>
+                <div class="grid-item">
+                    <h3>Avisos</h3>
+                    <p>Nesta seção, você pode criar e gerenciar avisos importantes para os alunos.</p>
+                    <a href="<?= $base ?>/painel/avisos">Gerenciar Avisos</a>
+                </div>
+                <div class="grid-item">
+                    <h3>Disciplinas</h3>
+                    <p>Nesta seção, você pode adicionar, editar e remover disciplinas.</p>
+                    <a href="<?= $base ?>/painel/disciplinas">Gerenciar Disciplinas</a>
+                </div>
+                <div class="grid-item">
+                    <h3>Eventos</h3>
+                    <p>Nesta seção, você pode criar e gerenciar eventos importantes.</p>
+                    <a href="<?= $base ?>/painel/eventos">Gerenciar Eventos</a>
+                </div>
+                <div class="grid-item">
+                    <h3>Quizzes</h3>
+                    <p>Nesta seção, você pode criar e gerenciar quizzes para os alunos.</p>
+                    <a href="<?= $base ?>/painel/quizzes">Gerenciar Quizzes</a>
+                </div>
+                <div class="grid-item">
+                    <h3>Logs</h3>
+                    <p>Nesta seção, você pode visualizar os logs do sistema para monitoramento.</p>
+                    <a href="<?= $base ?>/painel/logs">Ver Logs</a>
+                </div>
+            <?php endif; ?>
+            <div class="grid-item">
+                <h3>Voltar a home</h3>
+                <p>Clique no botão para voltar para a pagina principal do site.</p>
+                <a href="<?= $base ?>/">Voltar a home</a>
+            </div>
+        </div>
     </section>
 
     <script src="./assets/js/dicas.js"></script>

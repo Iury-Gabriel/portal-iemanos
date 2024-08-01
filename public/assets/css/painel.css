@@ -198,6 +198,58 @@ body {
     background-color: #e53935;
 }
 
+.containerDicas {
+    text-align: center;
+    padding: 20px;
+}
+.welcome-message {
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #317FC9;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+}
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.grid-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: left;
+    max-width: 300px;
+    width: 100%;
+}
+.grid-item h3 {
+    margin-top: 0;
+    color: #333;
+}
+.grid-item p {
+    color: #666;
+}
+.grid-item a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #317FC9;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.grid-item a:hover {
+    background-color: #0056b3;
+}
+
 @media (max-width: 768px) {
     .activityTable, .activityTable thead, .activityTable tbody, .activityTable th, .activityTable td, .activityTable tr {
         display: block;
