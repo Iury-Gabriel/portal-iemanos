@@ -26,6 +26,12 @@
                             <li><a href="<?= $base ?>/provas">Provas</a></li>
                             <li><a href="<?= $base ?>/quiz">Quiz</a></li>
                             <li><a href="<?= $base ?>/dicas">Dicas</a></li>
+                            <?php 
+                                if($cargo != 'aluno') {
+                                    echo '<li><a href="' . $base . '/painel">Painel</a></li>';    
+                                }
+                            ?>
+                            <li><a href="<?= $base ?>/logout">Sair</a></li>
                         </ul>
                     </div>
                     <div class="navBarMobile">
@@ -35,6 +41,12 @@
                             <li><a href="<?= $base ?>/provas">Provas</a></li>
                             <li><a href="<?= $base ?>/quiz">Quiz</a></li>
                             <li><a href="<?= $base ?>/dicas">Dicas</a></li>
+                            <?php 
+                                if($cargo != 'aluno') {
+                                    echo '<li><a href="' . $base . '/painel">Painel</a></li>';    
+                                }
+                            ?>
+                            <li><a href="<?= $base ?>/logout">Sair</a></li>
                         </ul>
                     </div>
                 </div>

@@ -15,6 +15,11 @@ class UserController extends Controller {
         $this->render('register');
     }
 
+    public function logout() {
+        setcookie('aluno', '', time() - 3600, '/'); // expira o cookie
+        $this->redirect('/');
+    }
+
     public function registerAction() {
         $pdo = Config::getPDO();
 

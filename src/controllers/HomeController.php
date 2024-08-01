@@ -15,6 +15,7 @@ class HomeController extends Controller
         if (isset($_COOKIE['aluno'])) {
             $alunoArray = json_decode($_COOKIE['aluno'], true);
             $salaId = $alunoArray['sala_id'] ?? null;
+            $cargo = $alunoArray['cargo'] ?? null;
         }
 
         $pdo = Config::getPDO();
@@ -56,7 +57,14 @@ class HomeController extends Controller
 
 
         if (isset($_COOKIE['aluno'])) {
-            $this->render('home', ['avisos' => $avisos, 'eventos' => $eventos, 'sala_id' => $salaId, 'atividades' => $atividades, 'provas' => $provas]);    
+            $this->render('home', [
+                'avisos' => $avisos,
+                'eventos' => $eventos,
+                'sala_id' => $salaId, 
+                'atividades' => $atividades, 
+                'provas' => $provas,
+                'cargo' => $cargo
+            ]);    
         } else {
             $this->redirect('/login');
         }

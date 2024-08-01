@@ -1,0 +1,361 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, sans-serif;
+    overflow-x: hidden;
+    background-color: white;
+}
+
+/* Header */
+
+.bannerHeader {
+    height: 10vh;
+    background-color: #317FB6;
+}
+
+.headerContainer {
+    width: 100vw;
+    height: 10vh;
+    background-color: #317FB6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.header {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navBarDesktop ul li a.active,
+.navBarMobile ul li a.active {
+    opacity: 0.5;
+}
+
+
+.logo {
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.navBar img.menuIcon {
+    width: 35px;
+    height: 35px;
+    margin: 10px 20px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.navBar img.inactive {
+    display: none;
+}
+
+.navBar img.fecharIcon {
+    width: 35px;
+    height: 35px;
+    margin: 10px;
+    margin-top: 15px;
+    cursor: pointer;
+    display: none;
+}
+
+.navBarDesktop {
+    display: none;
+}
+
+.navBarMobile {
+    background-color: white;
+    position: absolute;
+    top: 69px; 
+    left: 0;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden; 
+    transition: max-height 1s ease;
+    z-index: 1000;
+    background-color: #317FB6;
+}
+
+.activeFecharIcon {
+    display: block;
+    width: 35px;
+    height: 35px;
+    margin: 10px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.navBarMobile.active {
+    max-height: 500px;
+}
+
+.navBarMobile ul {
+    list-style: none;
+    padding: 0;
+}
+
+.navBarMobile ul li {
+    padding: 10px;
+}
+
+.navBarMobile ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.navBarMobile ul li a:hover {
+    opacity: 0.5;
+}
+
+/* Fim Header */
+
+.containerDicas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.dicasTitle {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 27px;
+}
+.dicas{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    margin: 20px 20px 0 20px;
+}
+
+/* CSS básico para estilizar a tabela */
+.activityTable {
+    width: 100%;
+    max-width: 1424px;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+.activityTable thead tr {
+    background-color: #317FB6;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+.activityTable th, .activityTable td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+.activityTable tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+.activityTable tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+.activityTable tbody tr:last-of-type {
+    border-bottom: 2px solid #317FB6;
+}
+.buttonContainer {
+    margin-bottom: 20px;
+}
+.buttonContainer button {
+    padding: 10px 20px;
+    background-color: #317FB6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+.buttonContainer button:hover {
+    background-color: #317FC9;
+}
+.actionButtons button {
+    margin-right: 5px;
+}
+.actionButtons button.edit {
+    background-color: #4CAF50; /* Green */
+}
+.actionButtons button.edit:hover {
+    background-color: #45a049;
+}
+.actionButtons button.delete {
+    background-color: #f44336; /* Red */
+}
+.actionButtons button.delete:hover {
+    background-color: #e53935;
+}
+
+@media (max-width: 768px) {
+    .activityTable, .activityTable thead, .activityTable tbody, .activityTable th, .activityTable td, .activityTable tr {
+        display: block;
+    }
+    .activityTable thead tr {
+        display: none;
+    }
+    .activityTable tr {
+        margin-bottom: 15px;
+    }
+    .activityTable td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 5px;
+        border-bottom: 1px solid #ddd;
+    }
+    .activityTable td::before {
+        content: attr(data-label);
+        flex-basis: 50%;
+        font-weight: bold;
+        color: #317FB6;
+    }
+}
+
+/* Estilização do modal */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.4); 
+    padding-top: 60px;
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    max-width: 600px;
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilização do formulário dentro do modal */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+}
+.modal-content form div {
+    margin-bottom: 15px;
+}
+.modal-content form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    display: block;
+}
+.modal-content form input[type="text"],
+.modal-content form input[type="date"],
+.modal-content form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.modal-content form textarea {
+    height: 100px;
+    resize: vertical;
+}
+.modal-content form button {
+    padding: 10px 20px;
+    background-color: #317FB6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.modal-content form button:hover {
+    background-color: #317FB9;
+}
+
+select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+select:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .dicas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .modal {
+        margin-top: 50px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .bannerHeader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .header {
+        max-width: 1224px;
+    }
+    .navBar img.menuIcon {
+        display: none;
+    }
+    .bannerText h1 {
+        font-size: 50px;
+    }
+    .navBarDesktop {
+        display: flex;
+    }
+    .navBar ul {
+        display: flex;
+        list-style: none;
+        gap: 15px;
+    }
+    .navBar ul li {
+        padding: 10px;
+    }
+    .navBar ul li a {
+        color: white;
+        text-decoration: none;
+    }
+    .navBar ul li a:hover {
+        opacity: 0.5;
+    }
+    .dicas {
+        grid-template-columns: repeat(3, 1fr);
+        margin: 20px auto 0 auto;
+        max-width: 1024px;
+        gap: 50px;
+    }
+}

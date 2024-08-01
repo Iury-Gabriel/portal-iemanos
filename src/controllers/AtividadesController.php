@@ -14,6 +14,7 @@ class AtividadesController extends Controller
         if (isset($_COOKIE['aluno'])) {
             $alunoArray = json_decode($_COOKIE['aluno'], true);
             $salaId = $alunoArray['sala_id'] ?? null;
+            $cargo = $alunoArray['cargo'] ?? null;
         }
 
         $pdo = Config::getPDO();
@@ -38,7 +39,7 @@ class AtividadesController extends Controller
             }
         }
         if (isset($_COOKIE['aluno'])) {
-            $this->render('atividades', ['disciplinas' => $disciplinas]);
+            $this->render('atividades', ['disciplinas' => $disciplinas, 'cargo' => $cargo]);    
         } else {
             $this->redirect('/login');
         }
