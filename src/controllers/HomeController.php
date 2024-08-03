@@ -14,6 +14,7 @@ class HomeController extends Controller
     {
         if (isset($_COOKIE['aluno'])) {
             $alunoArray = json_decode($_COOKIE['aluno'], true);
+            $userId = $alunoArray['id'];
             $salaId = $alunoArray['sala_id'] ?? null;
             $cargo = $alunoArray['cargo'] ?? null;
         }
@@ -57,14 +58,22 @@ class HomeController extends Controller
 
 
         if (isset($_COOKIE['aluno'])) {
+
+            $logSql = $pdo->prepare("INSERT INTO logs (usuario_id, acao, tipo_acao, data_hora) VALUES (:usuario_id, :acao, :tipo_acao, NOW())");
+            $logSql->execute([
+                'usuario_id' => $userId,
+                'acao' => 'Entrou na home',
+                'tipo_acao' => 'acesso'
+            ]);
+
             $this->render('home', [
                 'avisos' => $avisos,
                 'eventos' => $eventos,
-                'sala_id' => $salaId, 
-                'atividades' => $atividades, 
+                'sala_id' => $salaId,
+                'atividades' => $atividades,
                 'provas' => $provas,
                 'cargo' => $cargo
-            ]);    
+            ]);
         } else {
             $this->redirect('/login');
         }

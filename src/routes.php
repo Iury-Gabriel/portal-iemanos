@@ -33,3 +33,19 @@ $router->get('/painel/avisos', 'PainelController@avisos');
 $router->post('/painel/avisos/criar', 'PainelController@criarAviso');
 $router->post('/painel/avisos/editar', 'PainelController@editarAviso');
 $router->get('/painel/avisos/excluir', 'PainelController@excluirAviso');
+
+$router->get('/painel/logs', 'PainelController@logs');
+
+$router->get('/painel/alunos', 'PainelController@alunos');
+$router->post('/painel/alunos/editar', 'PainelController@editarAluno');
+$router->get('/painel/alunos/excluir', 'PainelController@excluirAluno');
+
+$router->get('/painel/disciplinas', 'PainelController@disciplinas');
+$router->post('/painel/disciplinas/criar', 'PainelController@criarDisciplina');
+$router->post('/painel/disciplinas/editar', 'PainelController@editarDisciplina');
+$router->get('/painel/disciplinas/excluir', 'PainelController@excluirDisciplina');
+
+$router->get('/painel/eventos', 'PainelController@eventos');
+$router->post('/painel/eventos/criar', 'PainelController@criarEvento');
+$router->post('/painel/eventos/editar', 'PainelController@editarEvento');
+$router->get('/painel/eventos/excluir', 'PainelController@excluirEvento');

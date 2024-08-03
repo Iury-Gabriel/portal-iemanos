@@ -119,11 +119,13 @@
         <h1>Eventos</h1>
 
         <?php foreach ($eventos as $evento) : ?>
-            <h3><?= $evento['titulo'] ?></h3>
-            <p><?= $evento['descricao'] ?></p>
+            <h3 class="h3Eventos"><?= htmlspecialchars($evento['titulo']) ?></h3>
+            <p><?= htmlspecialchars($evento['descricao']) ?></p>
+            <?php if (!empty($evento['imagem'])) : ?>
+                <img src="./eventos/<?= htmlspecialchars($evento['imagem']) ?>" alt="<?= htmlspecialchars($evento['titulo']) ?>">
+            <?php endif; ?>
         <?php endforeach; ?>
 
-        <img src="./assets/images/eventos.jpg" alt="">
     </section>
 
     <!-- Fim Horario de Aula -->
@@ -171,50 +173,16 @@
     <div id="updateModal" class="update-modal">
         <div class="update-modal-content">
             <span class="update-modal-close">&times;</span>
-            <h2>Novidades - Versão 2.2</h2>
+            <h2>Novidades - Versão 2.4</h2>
             <p>1. Melhorias no desempenho do site.</p>
-            <p>2. Novo conteúdo em nossa seção de Dicas.</p>
+            <p>2. Novo conteúdo em nossa seção de Quiz.</p>
             <p>3. Correções de bugs e atualizações de segurança.</p>
             <p>4. Novas funcionalidades adicionadas ao painel de avisos.</p>
             <p>5. Atualização no design do quiz.</p>
-            <p>Para mais detalhes, consulte a nossa página de atualizações.</p>
         </div>
     </div>
 
-
-
     <script src="./assets/js/script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var updateModal = document.getElementById('updateModal');
-            var closeModal = document.querySelector('.update-modal-close');
-
-            // Versão atual do modal
-            var currentVersion = '2.2'; // Atualize conforme necessário
-
-            // Versão do modal no localStorage
-            var storedVersion = localStorage.getItem('modalVersion');
-
-            // Verifica se o modal já foi fechado ou se a versão atual é diferente
-            if (storedVersion !== currentVersion) {
-                updateModal.style.display = 'flex';
-            }
-
-            // Fecha o modal quando o botão de fechar é clicado
-            closeModal.addEventListener('click', function() {
-                updateModal.style.display = 'none';
-                localStorage.setItem('modalVersion', currentVersion);
-            });
-
-            // Fecha o modal quando o usuário clica fora do modal
-            window.addEventListener('click', function(event) {
-                if (event.target === updateModal) {
-                    updateModal.style.display = 'none';
-                    localStorage.setItem('modalVersion', currentVersion);
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>

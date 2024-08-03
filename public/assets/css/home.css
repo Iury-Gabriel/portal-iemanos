@@ -389,7 +389,7 @@ section {
 
 .containerEventos {
     background-color: #003459;
-    height: 825px;
+    height: 925px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -400,6 +400,15 @@ section {
     color: white;
     font-weight: lighter;
     margin-top: 30px;
+}
+
+.h3Eventos {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+    font-weight: 300;   
+    margin-bottom: 10px;
+    font-size: 30px;
 }
 
 .containerEventos p {
@@ -712,8 +721,10 @@ section {
         font-size: 17px;
     }
     .containerEventos img {
-        width: 70%;
+        max-width: 800px;
+        width: 100%;
         height: 75%;
+        margin-bottom: 20px;
     }
     .painelColaboradores {
         flex-direction:row;

@@ -32,4 +32,27 @@ document.addEventListener('DOMContentLoaded', function () {
         fecharIcon.classList.remove('activeFecharIcon');
         fecharIcon.classList.add('fecharIcon');
     });
+
+    var updateModal = document.getElementById('updateModal');
+    var closeModal = document.querySelector('.update-modal-close');
+
+    var currentVersion = '2.4';
+
+    var storedVersion = localStorage.getItem('modalVersion');
+
+    if (storedVersion !== currentVersion) {
+        updateModal.style.display = 'flex';
+    }
+
+    closeModal.addEventListener('click', function () {
+        updateModal.style.display = 'none';
+        localStorage.setItem('modalVersion', currentVersion);
+    });
+
+    window.addEventListener('click', function (event) {
+        if (event.target === updateModal) {
+            updateModal.style.display = 'none';
+            localStorage.setItem('modalVersion', currentVersion);
+        }
+    });
 });

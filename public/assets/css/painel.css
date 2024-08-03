@@ -323,6 +323,8 @@ body {
 }
 .modal-content form input[type="text"],
 .modal-content form input[type="date"],
+.modal-content form input[type="number"],
+.modal-content form input[type="email"],
 .modal-content form textarea {
     width: 100%;
     padding: 10px;

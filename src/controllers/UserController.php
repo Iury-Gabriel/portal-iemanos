@@ -1,26 +1,32 @@
 <?php
+
 namespace src\controllers;
 
 use \core\Controller;
 use \src\Config;
 use \PDO; // Adicione a importação da classe PDO aqui
 
-class UserController extends Controller {
+class UserController extends Controller
+{
 
-    public function login() {
+    public function login()
+    {
         $this->render('login');
     }
 
-    public function register() {
+    public function register()
+    {
         $this->render('register');
     }
 
-    public function logout() {
+    public function logout()
+    {
         setcookie('aluno', '', time() - 3600, '/'); // expira o cookie
         $this->redirect('/login');
     }
 
-    public function registerAction() {
+    public function registerAction()
+    {
         $pdo = Config::getPDO();
 
         $nome = filter_input(INPUT_POST, 'nome');
@@ -46,6 +52,15 @@ class UserController extends Controller {
                 $sql->bindValue(':cargo', 'aluno');
                 $sql->execute();
 
+                $alunoId = $pdo->lastInsertId();
+
+                $logSql = $pdo->prepare("INSERT INTO logs (usuario_id, acao, tipo_acao, data_hora) VALUES (:usuario_id, :acao, :tipo_acao, NOW())");
+                $logSql->execute([
+                    'usuario_id' => $alunoId,
+                    'acao' => 'Novo aluno cadastrado',
+                    'tipo_acao' => 'cadastro'
+                ]);
+
                 $this->redirect('/login');
             }
         } else {
@@ -54,7 +69,8 @@ class UserController extends Controller {
         }
     }
 
-    public function loginAction() {
+    public function loginAction()
+    {
         $pdo = Config::getPDO();
 
         $email = filter_input(INPUT_POST, 'email');
@@ -71,6 +87,14 @@ class UserController extends Controller {
                 $senhasIguais = password_verify($senha, $hashSenha);
                 if ($senhasIguais) {
                     setcookie('aluno', json_encode($aluno), time() + (86400 * 30), '/');
+
+                    $logSql = $pdo->prepare("INSERT INTO logs (usuario_id, acao, tipo_acao, data_hora) VALUES (:usuario_id, :acao, :tipo_acao, NOW())");
+                    $logSql->execute([
+                        'usuario_id' => $aluno['id'],
+                        'acao' => 'Usuário logou no sistema',
+                        'tipo_acao' => 'login'
+                    ]);
+
                     $this->redirect('/');
                 } else {
                     $_SESSION['error'] = 'Senha incorreta!';
