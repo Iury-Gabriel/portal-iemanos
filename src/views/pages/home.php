@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <!-- Header e Banner-->
     <header class="bannerHeader">
         <div class="headerContainer">
@@ -26,7 +25,7 @@
                             <li><a href="<?= $base ?>/">Home</a></li>
                             <li><a href="<?= $base ?>/atividades">Atividades</a></li>
                             <li><a href="<?= $base ?>/provas">Provas</a></li>
-                            <li><a href="<?= $base ?>/quiz">Quiz</a></li>
+                            <li><a href="<?= $base ?>/quizzes">Quiz</a></li>
                             <li><a href="<?= $base ?>/dicas">Dicas</a></li>
                             <?php
                             if ($cargo != 'aluno') {
@@ -41,7 +40,7 @@
                             <li><a href="<?= $base ?>/">Home</a></li>
                             <li><a href="<?= $base ?>/atividades">Atividades</a></li>
                             <li><a href="<?= $base ?>/provas">Provas</a></li>
-                            <li><a href="<?= $base ?>/quiz">Quiz</a></li>
+                            <li><a href="<?= $base ?>/quizzes">Quiz</a></li>
                             <li><a href="<?= $base ?>/dicas">Dicas</a></li>
                             <?php
                             if ($cargo != 'aluno') {
@@ -168,7 +167,54 @@
         <p class="footerColaboradores">Desenvolvido por Yohana e Iury</p>
     </footer>
 
+    <!-- Modal de Novidades -->
+    <div id="updateModal" class="update-modal">
+        <div class="update-modal-content">
+            <span class="update-modal-close">&times;</span>
+            <h2>Novidades - Versão 2.2</h2>
+            <p>1. Melhorias no desempenho do site.</p>
+            <p>2. Novo conteúdo em nossa seção de Dicas.</p>
+            <p>3. Correções de bugs e atualizações de segurança.</p>
+            <p>4. Novas funcionalidades adicionadas ao painel de avisos.</p>
+            <p>5. Atualização no design do quiz.</p>
+            <p>Para mais detalhes, consulte a nossa página de atualizações.</p>
+        </div>
+    </div>
+
+
+
     <script src="./assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var updateModal = document.getElementById('updateModal');
+            var closeModal = document.querySelector('.update-modal-close');
+
+            // Versão atual do modal
+            var currentVersion = '2.2'; // Atualize conforme necessário
+
+            // Versão do modal no localStorage
+            var storedVersion = localStorage.getItem('modalVersion');
+
+            // Verifica se o modal já foi fechado ou se a versão atual é diferente
+            if (storedVersion !== currentVersion) {
+                updateModal.style.display = 'flex';
+            }
+
+            // Fecha o modal quando o botão de fechar é clicado
+            closeModal.addEventListener('click', function() {
+                updateModal.style.display = 'none';
+                localStorage.setItem('modalVersion', currentVersion);
+            });
+
+            // Fecha o modal quando o usuário clica fora do modal
+            window.addEventListener('click', function(event) {
+                if (event.target === updateModal) {
+                    updateModal.style.display = 'none';
+                    localStorage.setItem('modalVersion', currentVersion);
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

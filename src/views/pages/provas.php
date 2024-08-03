@@ -23,7 +23,7 @@
                             <li><a href="<?= $base ?>/">Home</a></li>
                             <li><a href="<?= $base ?>/atividades">Atividades</a></li>
                             <li><a href="<?= $base ?>/provas">Provas</a></li>
-                            <li><a href="<?= $base ?>/quiz">Quiz</a></li>
+                            <li><a href="<?= $base ?>/quizzes">Quiz</a></li>
                             <li><a href="<?= $base ?>/dicas">Dicas</a></li>
                             <?php 
                                 if($cargo != 'aluno') {
@@ -38,7 +38,7 @@
                             <li><a href="<?= $base ?>/">Home</a></li>
                             <li><a href="<?= $base ?>/atividades">Atividades</a></li>
                             <li><a href="<?= $base ?>/provas">Provas</a></li>
-                            <li><a href="<?= $base ?>/quiz">Quiz</a></li>
+                            <li><a href="<?= $base ?>/quizzes">Quiz</a></li>
                             <li><a href="<?= $base ?>/dicas">Dicas</a></li>
                             <?php 
                                 if($cargo != 'aluno') {

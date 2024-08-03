@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const quintaHorario = document.querySelector('.quintaHorario');
     const sextaHorario = document.querySelector('.sextaHorario');
 
-    var currentPage = window.location.pathname.split("/").pop(); 
+    var currentPage = window.location.pathname.split("/").pop();
 
     // Adiciona a classe 'active' ao link da página atual
     var links = document.querySelectorAll(".navBarDesktop ul li a, .navBarMobile ul li a");

@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/atividades.css">
-    <title>Atividades</title>
+    <link rel="stylesheet" href="./assets/css/quiz_page.css">
+    <title>Quiz</title>
 </head>
 
 <body>
@@ -27,11 +27,9 @@
                             <li><a href="<?= $base ?>/provas">Provas</a></li>
                             <li><a href="<?= $base ?>/quizzes">Quiz</a></li>
                             <li><a href="<?= $base ?>/dicas">Dicas</a></li>
-                            <?php 
-                                if($cargo != 'aluno') {
-                                    echo '<li><a href="' . $base . '/painel">Painel</a></li>';    
-                                }
-                            ?>
+                            <?php if ($cargo != 'aluno') : ?>
+                                <li><a href="<?= $base ?>/painel">Painel</a></li>
+                            <?php endif; ?>
                             <li><a href="<?= $base ?>/logout">Sair</a></li>
                         </ul>
                     </div>
@@ -42,11 +40,9 @@
                             <li><a href="<?= $base ?>/provas">Provas</a></li>
                             <li><a href="<?= $base ?>/quizzes">Quiz</a></li>
                             <li><a href="<?= $base ?>/dicas">Dicas</a></li>
-                            <?php 
-                                if($cargo != 'aluno') {
-                                    echo '<li><a href="' . $base . '/painel">Painel</a></li>';    
-                                }
-                            ?>
+                            <?php if ($cargo != 'aluno') : ?>
+                                <li><a href="<?= $base ?>/painel">Painel</a></li>
+                            <?php endif; ?>
                             <li><a href="<?= $base ?>/logout">Sair</a></li>
                         </ul>
                     </div>
@@ -55,33 +51,32 @@
         </div>
     </header>
 
-    <main>
-        <h1>Atividades por Disciplina</h1>
-        <div class="accordion">
-            <?php foreach ($disciplinas as $disciplina) : ?>
-                <div class="contentBx">
-                    <div class="label"><?= $disciplina['nome'] ?></div>
-                    <div class="content">
-                        <?php if (empty($disciplina['atividades'])) : ?>
-                            <h1 class="noTask">Sem Atividades no momento</h1>
-                        <?php else : ?>
-                            <?php foreach ($disciplina['atividades'] as $atividade) : ?>
-                                <div class="title">
-                                    <strong><?= $atividade['titulo'] ?></strong>
-                                    <p>Entrega: <?= $atividade['data_entrega'] ? date('d/m/Y', strtotime($atividade['data_entrega'])) : 'Indefinida' ?></p>
-                                </div>
-                                <div class="description">
-                                    <p><?= $atividade['descricao'] ?></p>
-                                </div>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </main>
+    <h1 class="titleQuestion"><?= htmlspecialchars($quiz['titulo']) ?></h1>
+    <h2 class="sub2titleQuestion"><?= htmlspecialchars($quiz['descricao']) ?></h2>
 
-    <script src="./assets/js/atividades.js"></script>
+    <form class="quizArea" method="POST" action="<?= $base ?>/quiz_result">
+        <input type="hidden" name="quiz_id" value="<?= $quiz['id'] ?>">
+        <?php foreach ($questoes as $index => $questao) : ?>
+            <div class="containerQuestao">
+                <h2 class="subTitleQuestion">Questão <?= $index + 1 ?></h2>
+                <div class="questao"><?= htmlspecialchars($questao['pergunta']) ?></div>
+                <div class="opcoes">
+                    <?php foreach ($questao['alternativas'] as $alternativa) : ?>
+                        <div>
+                            <label>
+                                <input type="radio" name="questao_<?= $questao['id'] ?>" value="<?= $alternativa['id'] ?>" required>
+                                <?= htmlspecialchars($alternativa['texto']) ?>
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        <button type="submit">Enviar</button>
+    </form>
+
+
+    <script src="./assets/js/quiz.js"></script>
 </body>
 
 </html>

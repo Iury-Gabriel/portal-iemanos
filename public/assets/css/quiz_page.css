@@ -1,0 +1,266 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, sans-serif;
+    overflow-x: hidden;
+    background-color: white;
+}
+
+/* Header */
+
+.bannerHeader {
+    height: 10vh;
+    background-color: #317FB6;
+}
+
+.headerContainer {
+    width: 100vw;
+    height: 10vh;
+    background-color: #317FB6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.header {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navBarDesktop ul li a.active,
+.navBarMobile ul li a.active {
+    opacity: 0.5;
+}
+
+
+.logo {
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.navBar img.menuIcon {
+    width: 35px;
+    height: 35px;
+    margin: 10px 10px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.navBar img.inactive {
+    display: none;
+}
+
+.navBar img.fecharIcon {
+    width: 35px;
+    height: 35px;
+    margin: 10px;
+    margin-top: 15px;
+    cursor: pointer;
+    display: none;
+}
+
+.navBarDesktop {
+    display: none;
+}
+
+.navBarMobile {
+    background-color: white;
+    position: absolute;
+    top: 69px; 
+    left: 0;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden; 
+    transition: max-height 1s ease;
+    z-index: 1000;
+    background-color: #317FB6;
+}
+
+.activeFecharIcon {
+    display: block;
+    width: 35px;
+    height: 35px;
+    margin: 10px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.navBarMobile.active {
+    max-height: 500px;
+}
+
+.navBarMobile ul {
+    list-style: none;
+    padding: 0;
+}
+
+.navBarMobile ul li {
+    padding: 10px;
+}
+
+.navBarMobile ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.navBarMobile ul li a:hover {
+    opacity: 0.5;
+}
+
+/* Fim Header */
+
+.barra {
+    margin-top: 60px;
+    background: #ddd;
+    height: 10px;
+    width: 100%;
+}
+
+.barraDeProgresso {
+    background: #4caf50;
+    height: 100%;
+    width: 0%;
+}
+
+.titleQuestion {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.sub2titleQuestion {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.quizArea {
+    width: 80%;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.containerQuestao {
+    margin-bottom: 20px;
+}
+
+.subTitleQuestion {
+    font-size: 20px;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.questao {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.opcoes {
+    margin-top: 10px;
+}
+
+.opcoes div {
+    margin-bottom: 10px;
+}
+
+.opcoes input[type="radio"] {
+    margin-right: 10px;
+}
+
+button {
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    display: block;
+    margin: 20px auto;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+.scoreArea {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.scorePct {
+    font-size: 24px;
+    color: #333;
+}
+
+.scoreText {
+    font-size: 20px;
+    color: #666;
+}
+
+.btnReiniciar {
+    background: #f44336;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btnReiniciar:hover {
+    background: #d32f2f;
+}
+
+@media (min-width: 1024px) {
+    .bannerHeader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .header {
+        max-width: 1024px;
+    }
+    .navBar img.menuIcon {
+        display: none;
+    }
+    .bannerText h1 {
+        font-size: 50px;
+    }
+    .navBarDesktop {
+        display: flex;
+    }
+    .navBar ul {
+        display: flex;
+        list-style: none;
+        gap: 15px;
+    }
+    .navBar ul li {
+        padding: 10px;
+    }
+    .navBar ul li a {
+        color: white;
+        text-decoration: none;
+    }
+    .navBar ul li a:hover {
+        opacity: 0.5;
+    }
+}

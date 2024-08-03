@@ -17,7 +17,7 @@ class UserController extends Controller {
 
     public function logout() {
         setcookie('aluno', '', time() - 3600, '/'); // expira o cookie
-        $this->redirect('/');
+        $this->redirect('/login');
     }
 
     public function registerAction() {

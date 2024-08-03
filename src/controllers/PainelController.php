@@ -319,4 +319,130 @@ class PainelController extends Controller
             $this->redirect('/login');
         }
     }
+
+    public function avisos()
+    {
+        if (isset($_COOKIE['aluno'])) {
+            $alunoArray = json_decode($_COOKIE['aluno'], true);
+            $salaId = $alunoArray['sala_id'] ?? null;
+            $cargo = $alunoArray['cargo'] ?? null;
+            if ($cargo != 'aluno') {
+                $pdo = Config::getPDO();
+
+                $avisos = [];
+                $sql = $pdo->query("SELECT * from avisos");
+                if ($sql->rowCount() > 0) {
+                    $avisos = $sql->fetchAll(PDO::FETCH_ASSOC);
+                }
+
+
+
+                $this->render('painel_avisos', ['cargo' => $cargo, 'avisos' => $avisos]);
+            } else {
+                $this->redirect('/');
+            }
+        } else {
+            $this->redirect('/login');
+        }
+    }
+
+    public function criarAviso()
+    {
+        if (isset($_COOKIE['aluno'])) {
+            $alunoArray = json_decode($_COOKIE['aluno'], true);
+            $salaId = $alunoArray['sala_id'] ?? null;
+            $cargo = $alunoArray['cargo'] ?? null;
+
+            if ($cargo != 'aluno') {
+                $pdo = Config::getPDO();
+
+                $titulo = filter_input(INPUT_POST, 'titulo');
+                $conteudo = filter_input(INPUT_POST, 'conteudo');
+
+                $sql = $pdo->prepare("INSERT INTO avisos (titulo, conteudo) VALUES (:titulo, :conteudo)");
+                $result = $sql->execute([
+                    'titulo' => $titulo,
+                    'conteudo' => $conteudo,
+                ]);
+
+                header('Content-Type: application/json');
+                if ($result) {
+                    echo json_encode(['success' => true, 'message' => 'Aviso criado com sucesso!', 'redirect' => '/painel/avisos']);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Falha ao criar aviso.']);
+                }
+            } else {
+                header('Content-Type: application/json');
+                echo json_encode(['success' => false, 'message' => 'Acesso negado.', 'redirect' => '/']);
+            }
+        } else {
+            header('Content-Type: application/json');
+            echo json_encode(['success' => false, 'message' => 'Usuário não autenticado.', 'redirect' => '/login']);
+        }
+    }
+
+
+    public function editarAviso()
+    {
+        if (isset($_COOKIE['aluno'])) {
+            $alunoArray = json_decode($_COOKIE['aluno'], true);
+            $cargo = $alunoArray['cargo'] ?? null;
+
+            if ($cargo != 'aluno') {
+                $pdo = Config::getPDO();
+
+                $id = filter_input(INPUT_POST, 'id');
+                $titulo = filter_input(INPUT_POST, 'titulo');
+                $conteudo = filter_input(INPUT_POST, 'conteudo');
+
+                $sql = $pdo->prepare("UPDATE avisos SET titulo = :titulo, conteudo = :conteudo WHERE id = :id");
+                $result = $sql->execute([
+                    'titulo' => $titulo,
+                    'conteudo' => $conteudo,
+                    'id' => $id
+                ]);
+
+                header('Content-Type: application/json');
+                if ($result) {
+                    echo json_encode(['success' => true, 'message' => 'Aviso atualizada com sucesso!', 'redirect' => '/painel/avisos']);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Falha ao editar aviso.']);
+                }
+            } else {
+                header('Content-Type: application/json');
+                echo json_encode(['success' => false, 'message' => 'Acesso negado.', 'redirect' => '/']);
+            }
+        } else {
+            header('Content-Type: application/json');
+            echo json_encode(['success' => false, 'message' => 'Usuário não autenticado.', 'redirect' => '/login']);
+        }
+    }
+
+    public function excluirAviso()
+    {
+        if (isset($_COOKIE['aluno'])) {
+            $alunoArray = json_decode($_COOKIE['aluno'], true);
+            $cargo = $alunoArray['cargo'] ?? null;
+
+            if ($cargo != 'aluno') {
+                $pdo = Config::getPDO();
+
+                $id = filter_input(INPUT_GET, 'id');
+
+                $sql = $pdo->prepare("DELETE FROM avisos WHERE id = :id");
+                $result = $sql->execute([
+                    'id' => $id
+                ]);
+
+                header('Content-Type: application/json');
+                if ($result) {
+                    $this->redirect('/painel/avisos');
+                }
+            } else {
+                $this->redirect('/');
+            }
+        } else {
+            $this->redirect('/login');
+        }
+    }
 }
