@@ -10,10 +10,20 @@ class QuizController extends Controller
 {
     public function index()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $cargo = $alunoArray['cargo'] ?? null;
-            $salaId = $alunoArray['sala_id'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+    
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $salaId = $aluno['sala_id'];    
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             $pdo = Config::getPDO();
 
@@ -41,9 +51,19 @@ class QuizController extends Controller
     }
 
     public function quiz() {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+    
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);  
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             $quizId = filter_input(INPUT_GET, 'id');
 
@@ -73,9 +93,19 @@ class QuizController extends Controller
     }
 
     public function quizResult() {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $alunoId = $alunoArray['id'];
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+    
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $alunoId = $aluno['id'];
+            } else {
+                $this->redirect('/login');
+            }
     
             $quizId = filter_input(INPUT_POST, 'quiz_id', FILTER_VALIDATE_INT);
             $responses = $_POST;

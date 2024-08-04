@@ -96,6 +96,7 @@
             <div class="painelAtvEProva">
                 <h1>Sala <?= $sala_id ?></h1>
                 <h2>Atividades Recentes</h2>
+                <?= empty($atividades) ? '<p>Nenhuma atividade encontrada</p>' : '' ?>
                 <?php foreach ($atividades as $atividade) : ?>
                     <p><?= $atividade['titulo'] ?></p>
                 <?php endforeach; ?>
@@ -104,6 +105,7 @@
             <div class="painelAtvEProva">
                 <h1>Sala <?= $sala_id ?></h1>
                 <h2>Provas de Segunda</h2>
+                <?= empty($provas) ? '<p>Nenhuma prova encontrada</p>' : '' ?>
                 <?php foreach ($provas as $prova) : ?>
                     <p class="prova"><?= $prova['nome'] ?></p>
                 <?php endforeach; ?>

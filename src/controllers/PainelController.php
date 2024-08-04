@@ -12,9 +12,20 @@ class PainelController extends Controller
 
     public function index()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
+
             if ($cargo != 'aluno') {
                 $this->render('painel', ['cargo' => $cargo]);
             } else {
@@ -27,10 +38,21 @@ class PainelController extends Controller
 
     public function atividades()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $salaId = $alunoArray['sala_id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $salaId = $aluno['sala_id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
+
             if ($cargo != 'aluno') {
                 $pdo = Config::getPDO();
 
@@ -64,11 +86,21 @@ class PainelController extends Controller
 
     public function criarAtividade()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $userId = $alunoArray['id'] ?? null;
-            $salaId = $alunoArray['sala_id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $salaId = $aluno['sala_id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             if ($cargo != 'aluno') {
                 $pdo = Config::getPDO();
@@ -119,10 +151,20 @@ class PainelController extends Controller
 
     public function editarAtividade()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $userId = $alunoArray['id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             if ($cargo != 'aluno') {
                 $pdo = Config::getPDO();
@@ -174,10 +216,20 @@ class PainelController extends Controller
 
     public function excluirAtividade()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $userId = $alunoArray['id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             if ($cargo != 'aluno') {
                 $pdo = Config::getPDO();
@@ -222,10 +274,21 @@ class PainelController extends Controller
 
     public function provas()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $salaId = $alunoArray['sala_id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $salaId = $aluno['sala_id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
+
             if ($cargo != 'aluno') {
                 $pdo = Config::getPDO();
 
@@ -260,11 +323,21 @@ class PainelController extends Controller
 
     public function criarProva()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $salaId = $alunoArray['sala_id'] ?? null;
-            $userId = $alunoArray['id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $salaId = $aluno['sala_id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             if ($cargo != 'aluno') {
                 $pdo = Config::getPDO();
@@ -319,10 +392,20 @@ class PainelController extends Controller
 
     public function editarProva()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $userId = $alunoArray['id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             if ($cargo != 'aluno') {
                 $pdo = Config::getPDO();
@@ -376,10 +459,20 @@ class PainelController extends Controller
 
     public function excluirProva()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $userId = $alunoArray['id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             if ($cargo != 'aluno') {
                 $pdo = Config::getPDO();
@@ -428,10 +521,20 @@ class PainelController extends Controller
 
     public function avisos()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $salaId = $alunoArray['sala_id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
+
             if ($cargo == 'admin') {
                 $pdo = Config::getPDO();
 
@@ -454,11 +557,20 @@ class PainelController extends Controller
 
     public function criarAviso()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $salaId = $alunoArray['sala_id'] ?? null;
-            $userId = $alunoArray['id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             if ($cargo == 'admin') {
                 $pdo = Config::getPDO();
@@ -501,10 +613,20 @@ class PainelController extends Controller
 
     public function editarAviso()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $userId = $alunoArray['id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             if ($cargo == 'admin') {
                 $pdo = Config::getPDO();
@@ -548,10 +670,20 @@ class PainelController extends Controller
 
     public function excluirAviso()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $userId = $alunoArray['id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             if ($cargo == 'admin') {
                 $pdo = Config::getPDO();
@@ -596,10 +728,21 @@ class PainelController extends Controller
 
     public function logs()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $salaId = $alunoArray['sala_id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
+
             if ($cargo == 'admin') {
                 $pdo = Config::getPDO();
 
@@ -632,9 +775,19 @@ class PainelController extends Controller
 
     public function alunos()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             if ($cargo == 'admin') {
                 $pdo = Config::getPDO();
@@ -656,10 +809,21 @@ class PainelController extends Controller
 
     public function editarAluno()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $userId = $alunoArray['id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $salaId = $aluno['sala_id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             if ($cargo == 'admin') {
                 $pdo = Config::getPDO();
@@ -707,10 +871,20 @@ class PainelController extends Controller
 
     public function excluirAluno()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $userId = $alunoArray['id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             if ($cargo == 'admin') {
                 $pdo = Config::getPDO();
@@ -754,9 +928,20 @@ class PainelController extends Controller
 
     public function disciplinas()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
+
             if ($cargo == 'admin') {
                 $pdo = Config::getPDO();
 
@@ -777,10 +962,21 @@ class PainelController extends Controller
 
     public function criarDisciplina()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $userId = $alunoArray['id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $salaId = $aluno['sala_id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             if ($cargo == 'admin') {
                 $pdo = Config::getPDO();
@@ -822,10 +1018,21 @@ class PainelController extends Controller
 
     public function editarDisciplina()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $userId = $alunoArray['id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $salaId = $aluno['sala_id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             if ($cargo == 'admin') {
                 $pdo = Config::getPDO();
@@ -869,10 +1076,20 @@ class PainelController extends Controller
 
     public function excluirDisciplina()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $userId = $alunoArray['id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             if ($cargo == 'admin') {
                 $pdo = Config::getPDO();
@@ -916,9 +1133,20 @@ class PainelController extends Controller
 
     public function eventos()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
+
             if ($cargo == 'admin') {
                 $pdo = Config::getPDO();
 
@@ -940,10 +1168,20 @@ class PainelController extends Controller
     public function criarEvento()
     {
         try {
-            if (isset($_COOKIE['aluno'])) {
-                $alunoArray = json_decode($_COOKIE['aluno'], true);
-                $userId = $alunoArray['id'] ?? null;
-                $cargo = $alunoArray['cargo'] ?? null;
+            if (isset($_COOKIE['token'])) {
+                $token = $_COOKIE['token'];
+                $pdo = Config::getPDO();
+                $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+                $sql->bindValue(':token', $token);
+                $sql->execute();
+
+                if ($sql->rowCount() > 0) {
+                    $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                    $userId = $aluno['id'];
+                    $cargo = $aluno['cargo'] ?? null;
+                } else {
+                    $this->redirect('/login');
+                }
 
                 if ($cargo == 'admin') {
                     $pdo = Config::getPDO();
@@ -1006,10 +1244,20 @@ class PainelController extends Controller
     public function editarEvento()
     {
         try {
-            if (isset($_COOKIE['aluno'])) {
-                $alunoArray = json_decode($_COOKIE['aluno'], true);
-                $userId = $alunoArray['id'] ?? null;
-                $cargo = $alunoArray['cargo'] ?? null;
+            if (isset($_COOKIE['token'])) {
+                $token = $_COOKIE['token'];
+                $pdo = Config::getPDO();
+                $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+                $sql->bindValue(':token', $token);
+                $sql->execute();
+
+                if ($sql->rowCount() > 0) {
+                    $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                    $userId = $aluno['id'];
+                    $cargo = $aluno['cargo'] ?? null;
+                } else {
+                    $this->redirect('/login');
+                }
 
                 if ($cargo == 'admin') {
                     $pdo = Config::getPDO();
@@ -1077,10 +1325,20 @@ class PainelController extends Controller
 
     public function excluirEvento()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $userId = $alunoArray['id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+    
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
 
             if ($cargo == 'admin') {
                 $pdo = Config::getPDO();

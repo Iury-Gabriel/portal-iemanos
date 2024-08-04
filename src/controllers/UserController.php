@@ -21,7 +21,7 @@ class UserController extends Controller
 
     public function logout()
     {
-        setcookie('aluno', '', time() - 3600, '/'); // expira o cookie
+        setcookie('token', '', time() - 3600, '/'); // expira o cookie
         $this->redirect('/login');
     }
 
@@ -70,43 +70,49 @@ class UserController extends Controller
     }
 
     public function loginAction()
-    {
-        $pdo = Config::getPDO();
+{
+    $pdo = Config::getPDO();
 
-        $email = filter_input(INPUT_POST, 'email');
-        $senha = filter_input(INPUT_POST, 'senha');
+    $email = filter_input(INPUT_POST, 'email');
+    $senha = filter_input(INPUT_POST, 'senha');
 
-        if ($email && $senha) {
-            $sql = $pdo->prepare("SELECT * FROM alunos WHERE email = :email");
-            $sql->bindValue(':email', $email);
-            $sql->execute();
+    if ($email && $senha) {
+        $sql = $pdo->prepare("SELECT * FROM alunos WHERE email = :email");
+        $sql->bindValue(':email', $email);
+        $sql->execute();
 
-            if ($sql->rowCount() > 0) {
-                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
-                $hashSenha = $aluno['senha'];
-                $senhasIguais = password_verify($senha, $hashSenha);
-                if ($senhasIguais) {
-                    setcookie('aluno', json_encode($aluno), time() + (86400 * 30), '/');
+        if ($sql->rowCount() > 0) {
+            $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+            $hashSenha = $aluno['senha'];
+            $senhasIguais = password_verify($senha, $hashSenha);
+            if ($senhasIguais) {
+                $token = bin2hex(random_bytes(16));
+                $updateTokenSql = $pdo->prepare("UPDATE alunos SET token = :token WHERE id = :id");
+                $updateTokenSql->bindValue(':token', $token);
+                $updateTokenSql->bindValue(':id', $aluno['id']);
+                $updateTokenSql->execute();
 
-                    $logSql = $pdo->prepare("INSERT INTO logs (usuario_id, acao, tipo_acao, data_hora) VALUES (:usuario_id, :acao, :tipo_acao, NOW())");
-                    $logSql->execute([
-                        'usuario_id' => $aluno['id'],
-                        'acao' => 'Usuário logou no sistema',
-                        'tipo_acao' => 'login'
-                    ]);
+                setcookie('token', $token, time() + (86400 * 30), '/');
 
-                    $this->redirect('/');
-                } else {
-                    $_SESSION['error'] = 'Senha incorreta!';
-                    $this->redirect('/login');
-                }
+                $logSql = $pdo->prepare("INSERT INTO logs (usuario_id, acao, tipo_acao, data_hora) VALUES (:usuario_id, :acao, :tipo_acao, NOW())");
+                $logSql->execute([
+                    'usuario_id' => $aluno['id'],
+                    'acao' => 'Usuário logou no sistema',
+                    'tipo_acao' => 'login'
+                ]);
+
+                $this->redirect('/');
             } else {
-                $_SESSION['error'] = 'Este email não está cadastrado, vá para a página de cadastro';
+                $_SESSION['error'] = 'Senha incorreta!';
                 $this->redirect('/login');
             }
         } else {
-            $_SESSION['error'] = 'Preencha todos os campos';
+            $_SESSION['error'] = 'Este email não está cadastrado, vá para a página de cadastro';
             $this->redirect('/login');
         }
+    } else {
+        $_SESSION['error'] = 'Preencha todos os campos';
+        $this->redirect('/login');
     }
+}
 }

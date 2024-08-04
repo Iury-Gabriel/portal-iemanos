@@ -168,6 +168,11 @@ main h1 {
     transition: 0.5s;
 }
 
+.noExam {
+    margin: auto;
+    text-align: center;
+}
+
 .accordion .contentBx.active .content {
     height: 100%;
     max-height: 400px;

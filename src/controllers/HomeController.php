@@ -12,11 +12,23 @@ class HomeController extends Controller
 
     public function index()
     {
-        if (isset($_COOKIE['aluno'])) {
-            $alunoArray = json_decode($_COOKIE['aluno'], true);
-            $userId = $alunoArray['id'];
-            $salaId = $alunoArray['sala_id'] ?? null;
-            $cargo = $alunoArray['cargo'] ?? null;
+        if (isset($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $pdo = Config::getPDO();
+            $sql = $pdo->prepare("SELECT * FROM alunos WHERE token = :token");
+            $sql->bindValue(':token', $token);
+            $sql->execute();
+    
+            if ($sql->rowCount() > 0) {
+                $aluno = $sql->fetch(PDO::FETCH_ASSOC);
+                $userId = $aluno['id'];
+                $salaId = $aluno['sala_id'];    
+                $cargo = $aluno['cargo'] ?? null;
+            } else {
+                $this->redirect('/login');
+            }
+        } else {
+            $this->redirect('/login');
         }
 
         $pdo = Config::getPDO();
@@ -57,7 +69,7 @@ class HomeController extends Controller
         }
 
 
-        if (isset($_COOKIE['aluno'])) {
+        if (isset($_COOKIE['token'])) {
 
             $logSql = $pdo->prepare("INSERT INTO logs (usuario_id, acao, tipo_acao, data_hora) VALUES (:usuario_id, :acao, :tipo_acao, NOW())");
             $logSql->execute([
@@ -77,15 +89,5 @@ class HomeController extends Controller
         } else {
             $this->redirect('/login');
         }
-    }
-
-    public function sobre()
-    {
-        $this->render('sobre');
-    }
-
-    public function sobreP($args)
-    {
-        print_r($args);
     }
 }
